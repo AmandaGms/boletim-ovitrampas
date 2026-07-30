@@ -2,14 +2,18 @@
 
 Ferramenta desenvolvida em **R** e **R Markdown** para automatizar a geração de boletins de vigilância entomológica por ovitrampas a partir de dados exportados do aplicativo **Conta Ovos**.
 
-O projeto utiliza arquivos **CSV** exportados pelo sistema, sendo uma alternativa para a não utilização da API do aplicativo. A partir desses dados, a ferramenta calcula automaticamente indicadores, produz tabelas e gera um boletim em PDF, reduzindo significativamente o tempo necessário para elaboração dos relatórios periódicos.
+O projeto utiliza arquivos **CSV** exportados pelo aplicativo, sendo outra alternativa para a utilização da API. A partir desses dados, a ferramenta calcula automaticamente indicadores, produz tabelas e gera um boletim em PDF, reduzindo significativamente o tempo necessário para elaboração dos relatórios periódicos.
 
 O boletim permite acompanhar a **cobertura do monitoramento por ovitrampas no Distrito Federal**, avaliar o desempenho das Regiões Administrativas e verificar o cumprimento das metas estabelecidas no **Plano Distrital de Saúde do Distrito Federal 2024-2027**.
 
 Embora tenha sido desenvolvido para o Distrito Federal, o código foi estruturado de forma que possa ser facilmente adaptado para outros estados ou municípios que utilizem ovitrampas na vigilância entomológica.
 
-##Contexto
+---
+
+# Contexto
+
 O monitoramento por ovitrampas é um importante componente da vigilância entomológica de Aedes aegypti. A elaboração manual de boletins e indicadores demanda tempo e está sujeita a erros. Esta ferramenta automatiza esse processo, permitindo a geração padronizada de relatórios que apoiam o monitoramento da cobertura das ovitrampas e o acompanhamento das metas do Plano Distrital de Saúde, contribuindo para a tomada de decisão pelos serviços de vigilância.
+
 ---
 
 ## Principais funcionalidades
@@ -30,9 +34,9 @@ O monitoramento por ovitrampas é um importante componente da vigilância entomo
 ## Estrutura do projeto
 
 ```
-Boletim_ovitrampas.Rmd
-state-27-2026.csv
-meta_nova.csv
+Boletim_ovitrampas.Rmd   -> script 
+state-27-2026.csv -> banco de dados do ContaOvos
+meta_nova.csv -> meta com quantidade de ovitrampas esperadas em cada município
 README.md
 ```
 
@@ -45,7 +49,6 @@ tidyverse
 kableExtra
 janitor
 stringi
-rstudioapi
 ```
 
 ---
@@ -77,7 +80,7 @@ arquivo <- "state-27-2026.csv"
 
 meta_ra <- read_csv2("meta_nova.csv")
 
-Periodo_analise <- "Q1_2026"
+Periodo_analise <- "Q1_2026"  # ESCOLHA O MÊS, QUADRIMESTRE, OU ANO DE ANÁLISE (exemplo: Julho->  "Julho_2025",  1º quadrimestre de 2025 -> "Q1_2025"; Para todo ano de 2025 ->  "Ano_2025")
 ```
 
 ### 5. Gere o boletim
@@ -94,11 +97,6 @@ O código foi desenvolvido para o Distrito Federal, porém pode ser adaptado par
 
 Para a adaptação, basta alterar os arquivos de entrada (dados e metas) e, quando necessário, os nomes das regiões monitoradas.
 
----
-
-## Exemplo
-
-*Inserir uma imagem do boletim gerado.*
 
 ---
 
